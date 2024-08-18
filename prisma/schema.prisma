@@ -26,15 +26,15 @@ model User {
 }
 
 model Event {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   title         String
   category      String
   description   String
-  imageUrl      String
+  imageUrl      String?
   location      String
-  startDateTime DateTime
-  endDateTime   DateTime
-  price         Int
+  startDateTime DateTime?
+  endDateTime   DateTime?
+  price         String
   url           String
 
   createdAt DateTime @default(now())

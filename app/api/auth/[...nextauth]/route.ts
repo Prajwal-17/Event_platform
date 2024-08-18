@@ -49,32 +49,57 @@ export const authOptions: NextAuthOptions = {
       },
     })
   ],
+  // callbacks: {
+  //   jwt: ({ user, token }) => {
+  //     // console.log("token", token)
+  //     // console.log("************************************")
+  //     // console.log("user", user)
+  //     // console.log("*******************end of token*************")
+  //     if (user) {
+  //       return {
+  //         ...token,
+  //         id: user.id,
+  //         email: user.email,
+  //         userId: user.id
+  //       }
+  //     }
+  //     return token;
+  //   },
+  //   session: ({ session, token }) => {
+  //     // console.log("***************************")
+  //     // console.log('Session Callback', { session, token })
+  //     // console.log("***************************")
+  //     return {
+  //       ...session,
+  //       user: {
+  //         id: token.id,
+  //         email: token.email,
+  //         userId: token.userId,
+  //       }
+  //     }
+  //   }
+  // }
   callbacks: {
     jwt: ({ user, token }) => {
-      // console.log("token", token)
-      // console.log("************************************")
-      // console.log("user", user)
-      // console.log("*******************end of token*************")
       if (user) {
         return {
           ...token,
           id: user.id,
-          email: user.email,
-        }
+          email: user.email ,
+          userId: user.id // Ensure userId is added here
+        };
       }
       return token;
     },
     session: ({ session, token }) => {
-      // console.log("***************************")
-      // console.log('Session Callback', { session, token })
-      // console.log("***************************")
       return {
         ...session,
         user: {
           id: token.id,
           email: token.email,
+          userId: token.userId, // Make sure userId is mapped here
         }
-      }
+      };
     }
   }
 }
