@@ -1,6 +1,8 @@
 "use client";
 
+import { categoryAction, getAllCategories } from "@/actions/categoryAction";
 import { createEvent } from "@/actions/event.actions";
+import { CategoryDropDown } from "@/components/CategoryDropDown";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,15 +17,13 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function CreateEventPage() {
 
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [startDateTime, setStartDateTime] = useState<Date | null>(new Date());
   const [endDateTime, setEndDateTime] = useState<Date | null>(new Date());
-
   const [imageUrl, setImageUrl] = useState<string>("");
-
   const [userId, setUserId] = useState<string>("")
 
-  const { data: session } = useSession();
 
   useEffect(() => {
     setUserId(session?.user?.id ?? "");
@@ -35,13 +35,44 @@ export default function CreateEventPage() {
     const formattedEndDateTime = endDateTime ? endDateTime.toISOString() : "";
 
     try {
-      const result = await createEvent(formData, imageUrl, formattedStartDateTime, formattedEndDateTime, userId);
+      console.log("page.tsx", userId)
+      const result = await createEvent(formData, selectedCategory, imageUrl, formattedStartDateTime, formattedEndDateTime, userId);
 
       if (result.success) {
         router.push("/")
       }
 
       setImageUrl("")
+    } catch (err: any) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getAllCategories();
+        const categoryNames = response?.categories?.map((category) => category.name) || [];
+        setCategory(categoryNames)
+      } catch (err: any) {
+        console.log(err)
+      }
+    }
+
+    fetchCategories();
+  }, [])
+
+  const [categories, setCategory] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>("")
+
+  const addNewCategory = async (newCategory: string) => {
+    try {
+      const result = await categoryAction(newCategory);
+
+      if (result?.category) {
+        setCategory([...categories, newCategory])
+      }
+
     } catch (err: any) {
       console.log(err)
     }
@@ -57,8 +88,15 @@ export default function CreateEventPage() {
         <form action={handleform}>
           <div className="grid grid-cols-2 gap-5 mx-28 my-10">
 
+            <div>
+              <CategoryDropDown
+                categories={categories}
+                addNewCategory={addNewCategory}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+              />
+            </div>
             <Input className="bg-gray-50 rounded-2xl" type="text" name="title" placeholder="Event Name" />
-            <Input className="bg-gray-50" type="text" name="category" placeholder="Category" />
             <Textarea className="bg-gray-50" name="description" placeholder="Description" />
             <UploadDropzone
               endpoint="imageUploader"
