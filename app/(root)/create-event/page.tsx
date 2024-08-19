@@ -26,7 +26,7 @@ export default function CreateEventPage() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    setUserId(session?.user?.userId ?? "");
+    setUserId(session?.user?.id ?? "");
   }, [session]);
 
   const handleform = async (formData: FormData) => {

@@ -86,7 +86,7 @@ export const authOptions: NextAuthOptions = {
           ...token,
           id: user.id,
           email: user.email ,
-          userId: user.id // Ensure userId is added here
+          // userId: user.id // Ensure userId is added here
         };
       }
       return token;
@@ -97,7 +97,7 @@ export const authOptions: NextAuthOptions = {
         user: {
           id: token.id,
           email: token.email,
-          userId: token.userId, // Make sure userId is mapped here
+          // userId: token.userId, // Make sure userId is mapped here
         }
       };
     }
