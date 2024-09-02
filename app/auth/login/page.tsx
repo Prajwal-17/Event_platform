@@ -7,6 +7,7 @@ import { useState } from "react";
 import success from "@/public/success-icon.png"
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { revalidatePath } from "next/cache";
 
 export default function Login() {
 

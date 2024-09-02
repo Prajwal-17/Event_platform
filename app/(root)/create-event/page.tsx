@@ -96,8 +96,8 @@ export default function CreateEventPage() {
                 setSelectedCategory={setSelectedCategory}
               />
             </div>
-            <Input className="bg-gray-50 rounded-2xl" type="text" name="title" placeholder="Event Name" />
-            <Textarea className="bg-gray-50" name="description" placeholder="Description" />
+            <Input className="bg-gray-50 rounded-2xl" type="text" name="title" placeholder="Event Name" required />
+            <Textarea className="bg-gray-50" name="description" placeholder="Description" required />
             <UploadDropzone
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
@@ -108,7 +108,7 @@ export default function CreateEventPage() {
                 // alert(`ERROR! ${error.message}`);
               }}
             />
-            <Input className="col-span-2 bg-gray-50" type="text" name="location" placeholder="Event Location or Online" />
+            <Input className="col-span-2 bg-gray-50" type="text" name="location" placeholder="Event Location or Online" required />
             <div className="p-3 flex bg-gray-50 ">
               <Image
                 src="/icons/calendar.svg"
@@ -146,9 +146,9 @@ export default function CreateEventPage() {
               />
             </div>
             <div>
-              <Input className="bg-gray-50 rounded-2xl" name="price" type="text" placeholder="Price" />
+              <Input className="bg-gray-50 rounded-2xl" name="price" type="text" placeholder="Price" required />
             </div>
-            <Input className="bg-gray-50" type="url" name="url" placeholder="URL" />
+            <Input className="bg-gray-50" type="url" name="url" placeholder="URL" required />
             <Button type="submit" className="col-span-2">Create Event</Button>
           </div>
         </form>

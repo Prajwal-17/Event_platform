@@ -3,10 +3,10 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import SessionProvider from "@/lib/SessionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { authOptions } from "@/utils/authOptions";
 
 const poppins = Poppins({
   subsets: ['latin'],
