@@ -37,3 +37,28 @@ export async function GET(request: NextRequest, { params }: { params: { eventId:
     return NextResponse.json({ msg: "Something went wrong" }, { status: 400 })
   }
 }
+
+export async function DELETE(request: NextRequest, { params }: { params: { eventId: string } }) {
+  const eventId = params.eventId;
+  console.log("eventId", eventId);
+
+  try {
+    const event = await prisma.event.delete({
+      where: {
+        id: eventId,
+      },
+    });
+
+    return NextResponse.json(
+      { event, msg: "Successfully deleted the event" },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.log(error);
+
+    return NextResponse.json(
+      { msg: "Event does not exist" },
+      { status: 404 }
+    );
+  }
+}

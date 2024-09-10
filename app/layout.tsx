@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
-import { getServerSession } from "next-auth";
+import SessionProvider from "@/lib/sessionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
-import { SessionProvider } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 const poppins = Poppins({
   subsets: ["latin"],
