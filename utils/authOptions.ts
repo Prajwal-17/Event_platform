@@ -79,28 +79,5 @@ export const authOptions: NextAuthOptions = {
       }
     }
   }
-  // callbacks: {
-  //   jwt: ({ user, token }) => {
-  //     if (user) {
-  //       return {
-  //         ...token,
-  //         id: user.id,
-  //         email: user.email,
-  //         // userId: user.id // Ensure userId is added here
-  //       };
-  //     }
-  //     return token;
-  //   },
-  //   session: ({ session, token }) => {
-  //     return {
-  //       ...session,
-  //       user: {
-  //         id: token.id,
-  //         email: token.email,
-  //         // userId: token.userId, // Make sure userId is mapped here
-  //       }
-  //     };
-  //   }
-  // }
 }
 

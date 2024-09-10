@@ -4,24 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
 import searchSvg from '@/public/icons/search.svg'
-
-type Category = {
-  id: string,
-  name: string
-}
-
-type EventProps = {
-  id: string,
-  title: string,
-  category: Category,
-  description: string,
-  imageUrl: string,
-  location: string,
-  startDateTime: Date,
-  endDateTime: Date,
-  price: string,
-  url: string
-}
+import { EventProps } from "@/lib/types";
+import { formatEventDate } from "@/lib/dateFormat";
 
 export default function Events() {
 
@@ -44,16 +28,6 @@ export default function Events() {
 
     fetchEvents()
   }, [])
-
-  const formatDate = (date: Date) => {
-    return Intl.DateTimeFormat("en-US", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-      hour: "numeric",
-      minute: "numeric",
-    }).format(new Date(date))
-  }
 
   return (<>
     <main className="bg-white px-24 py-10 w-full">
@@ -82,7 +56,7 @@ export default function Events() {
             <div
               className="hover:cursor-pointer shadow-lg rounded-xl flex flex-col h-full"
               onClick={() => {
-                router.push(`/events/eventDetails/${item.id}`);
+                router.push(`/events/event-details/${item.id}`);
               }}
               key={item.id}
             >
@@ -107,7 +81,7 @@ export default function Events() {
                 </div>
 
                 <div className="text-gray-500 font-semibold text-md my-4">
-                  {formatDate(item.startDateTime)}
+                  {formatEventDate(item.startDateTime)}
                 </div>
 
                 <div className="font-bold text-xl my-2">

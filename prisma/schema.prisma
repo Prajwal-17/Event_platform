@@ -41,7 +41,7 @@ model Event {
   updatedAt DateTime @updatedAt
 
   categoryId String? @db.ObjectId
-  User       User?   @relation(fields: [userId], references: [id])
+  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String? @db.ObjectId
 }
 

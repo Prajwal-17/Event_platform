@@ -1,12 +1,11 @@
 import prisma from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-// Define the GET request handler
 export async function GET(request: NextRequest) {
   try {
     const events = await prisma.event.findMany({
       include: {
-        User: true,
+        user: true,
         category: true
       }
     })
