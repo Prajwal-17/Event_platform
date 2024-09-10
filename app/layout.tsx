@@ -3,15 +3,15 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import { getServerSession } from "next-auth";
-import SessionProvider from "@/lib/sessionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
+import { SessionProvider } from "next-auth/react";
 
 const poppins = Poppins({
-  subsets: ['latin'],
+  subsets: ["latin"],
   weight: ["300", "400", "600", "700", "800", "900"],
-  variable: '--font-poppins',
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -24,23 +24,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
-      <body className={cn(
-        "min-h-screen flex flex-col",
-        poppins.className
-      )}>
+      <body className={cn("min-h-screen flex flex-col", poppins.className)}>
         <SessionProvider session={session}>
           <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </SessionProvider>
       </body>
-    </html >
+    </html>
   );
 }
