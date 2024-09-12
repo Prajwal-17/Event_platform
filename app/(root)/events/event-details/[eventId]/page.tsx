@@ -49,12 +49,20 @@ export default function EventDetails({
   return (
     <>
       <div className="bg-[rgb(246,248,253)] px-24 py-10 w-full min-h-86 flex gap-7">
-        <img
-          src={event.imageUrl}
-          alt="event image"
-          className="h-100 w-200 object-fill "
-        />
-        <div>
+      <div className="w-1/2 flex items-center">
+        <div className="w-full">
+          <Image
+            alt="image"
+            src={event.imageUrl}
+            layout="responsive"
+            width={100}
+            height={100}
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="w-1/2">
           <div>
             <h1 className="text-4xl font-bold my-5 ">{event.title}</h1>
             <div className="flex my-3 gap-5 items-center">
@@ -69,7 +77,9 @@ export default function EventDetails({
               </div>
             </div>
 
-            <Button className="bg-[rgb(98,76,245)] px-7 py-6 font-medium rounded-3xl hover:bg-[#4732d1] ">
+            <Button
+              onClick={() => router.push(`/events/checkout-page/${event.id}`)}
+              className="bg-[rgb(98,76,245)] px-7 py-6 font-medium rounded-3xl hover:bg-[#4732d1] ">
               Buy Ticket
             </Button>
 
@@ -96,7 +106,7 @@ export default function EventDetails({
             </div>
 
             <div className="my-4">
-              <p className="text-gray-500 font-bold"> What You'll Learn:</p>
+              <p className="text-gray-500 font-bold"> What You&#39;npm ll Learn:</p>
               <div className="mt-3">{event.description}</div>
             </div>
 

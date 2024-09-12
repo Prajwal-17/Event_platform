@@ -44,9 +44,6 @@ export default function Events() {
     }
   };
 
-  console.log("Session user:", session?.user.name);
-  // console.log("Item user:", item.user);
-
   return (
     <>
       <main className="bg-white px-24 py-10 w-full">
@@ -78,7 +75,7 @@ export default function Events() {
           {events.length > 0 ? (
             events.map((item: EventProps) => (
               <div
-                className="hover:cursor-pointer shadow-lg rounded-xl flex flex-col h-full"
+                className=" shadow-lg rounded-xl flex flex-col h-full"
                 key={item.id}
               >
                 {session?.user.id === item.user.id ? (
@@ -89,13 +86,14 @@ export default function Events() {
                         alt="update"
                         width={20}
                         height={20}
-                        // onClick={}
+                        className="cursor-pointer"
                       />
                       <Image
                         src="/icons/delete.svg"
                         alt="update"
                         width={20}
                         height={20}
+                        className="cursor-pointer"
                         onClick={() => {
                           deleteEvent(item.id);
                         }}
@@ -132,7 +130,7 @@ export default function Events() {
                     onClick={() => {
                       router.push(`/events/event-details/${item.id}`);
                     }}
-                    className="font-bold text-xl my-2"
+                    className="font-bold cursor-pointer text-xl my-2"
                   >
                     {item.title}
                   </div>
