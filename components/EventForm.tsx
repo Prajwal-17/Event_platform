@@ -1,5 +1,5 @@
-export const EventForm=()=>{
-    return(<>
-   <div>hello</div> 
+export const EventForm = () => {
+    return (<>
+        <div>event form</div>
     </>)
 }
