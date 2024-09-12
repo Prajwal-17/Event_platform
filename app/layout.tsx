@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
-import SessionProvider from "../lib/sessionProvider";
+import SessionProviderWrapper from "@/lib/sessionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { authOptions } from "@/utils/authOptions";
@@ -29,11 +29,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cn("min-h-screen flex flex-col", poppins.className)}>
-        <SessionProvider session={session}>
+        <SessionProviderWrapper session={session}>
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
-        </SessionProvider>
+        </SessionProviderWrapper>
       </body>
     </html>
   );
