@@ -106,7 +106,7 @@ export default function EventDetails({
             </div>
 
             <div className="my-4">
-              <p className="text-gray-500 font-bold"> What You&#39;npm ll Learn:</p>
+              <p className="text-gray-500 font-bold"> What You&#39;ll Learn:</p>
               <div className="mt-3">{event.description}</div>
             </div>
 
