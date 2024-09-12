@@ -87,6 +87,9 @@ export default function Events() {
                         width={20}
                         height={20}
                         className="cursor-pointer"
+                        onClick={() => {
+                          router.push(`/events/update-event/${item.id}`)
+                        }}
                       />
                       <Image
                         src="/icons/delete.svg"

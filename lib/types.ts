@@ -23,3 +23,8 @@ export type EventProps = {
   url: string,
   user: User,
 }
+
+export type FormPropsTypes ={
+  eventId:string | null,
+  eventType:string,
+}
