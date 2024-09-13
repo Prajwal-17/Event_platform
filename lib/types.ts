@@ -28,3 +28,9 @@ export type FormPropsTypes ={
   eventId:string | null,
   eventType:string,
 }
+
+export type CheckoutProps = {
+  amount :number,
+  eventId:string,
+  userId:string,
+}

@@ -78,7 +78,7 @@ export default function EventDetails({
             </div>
 
             <Button
-              onClick={() => router.push(`/events/checkout-page/${event.id}`)}
+              onClick={() => router.push(`/events/checkout-page/${event.id}?title=${event.title}&amount=${event.price}`)}
               className="bg-[rgb(98,76,245)] px-7 py-6 font-medium rounded-3xl hover:bg-[#4732d1] ">
               Buy Ticket
             </Button>

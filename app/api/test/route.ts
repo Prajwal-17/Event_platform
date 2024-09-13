@@ -5,13 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    const result = await prisma.user.findFirst({
-      where: { id: "66bb9da8b39584fa3fb30aba" },
+    const result = await prisma.user.findMany({
       include: {
-        Event: true
+        Event: true,
+        tickets: true,
       }
     })
-
     return NextResponse.json({ result })
   } catch (err: any) {
     console.log(err)

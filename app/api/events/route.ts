@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const events = await prisma.event.findMany({
       include: {
         user: true,
-        category: true
+        category: true,
+        tickets:true,
       }
     })
     return NextResponse.json(events);
