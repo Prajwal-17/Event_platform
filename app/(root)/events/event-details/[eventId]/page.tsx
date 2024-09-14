@@ -49,20 +49,20 @@ export default function EventDetails({
   return (
     <>
       <div className="bg-[rgb(246,248,253)] px-24 py-10 w-full min-h-86 flex gap-7">
-      <div className="w-1/2 flex items-center">
-        <div className="w-full">
-          <Image
-            alt="image"
-            src={event.imageUrl}
-            layout="responsive"
-            width={100}
-            height={100}
-            className="object-cover"
-          />
+        <div className="w-1/2 flex items-center">
+          <div className="w-full">
+            <Image
+              alt="image"
+              src={event.imageUrl}
+              layout="responsive"
+              width={100}
+              height={100}
+              className="object-cover"
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="w-1/2">
+        <div className="w-1/2">
           <div>
             <h1 className="text-4xl font-bold my-5 ">{event.title}</h1>
             <div className="flex my-3 gap-5 items-center">
@@ -159,7 +159,9 @@ export default function EventDetails({
 
                     <div className="flex justify-between mt-auto mb-4 mx-2">
                       <p className="text-gray-500 font-semibold">User</p>
-                      <p className="text-blue-500">Order Details</p>
+                      <p className="text-blue-500 cursor-pointer" onClick={() => {
+                        router.push(`/order-details/${event.id}`)
+                      }}>Order Details</p>
                     </div>
                   </div>
                 </div>

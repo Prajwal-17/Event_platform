@@ -14,6 +14,7 @@ export async function GET(request: NextRequest, { params }: { params: { eventId:
       include: {
         user: true,
         category: true,
+        tickets: true,
       }
     })
 

@@ -144,7 +144,9 @@ export default function Events() {
                         ? "You"
                         : `${item.user.name}`}
                     </p>
-                    <p className="text-blue-500">Order Details</p>
+                    <p className="text-blue-500 cursor-pointer" onClick={() => {
+                      router.push(`/order-details/${item.id}`)
+                    }}>Order Details</p>
                   </div>
                 </div>
               </div>
