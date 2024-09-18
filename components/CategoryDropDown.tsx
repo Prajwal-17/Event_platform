@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-
 import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
@@ -51,43 +50,47 @@ export function CategoryDropDown(
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">{selectedCategory || "Category"}</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
-          {
-            categories.map((tag, index) => (
-              <DropdownMenuCheckboxItem
-                checked={selectedCategory === tag}
-                onCheckedChange={() => setSelectedCategory(tag)}
-                key={index}  >
-                {tag}
-              </DropdownMenuCheckboxItem>
-            ))
-          }
-          <AlertDialog>
-            <AlertDialogTrigger>Add New Category</AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>New Category</AlertDialogTitle>
-              </AlertDialogHeader>
-              <AlertDialogDescription>
-                <Input
-                  type="text"
-                  name="category"
-                  value={newCategory}
-                  onChange={(e) => { setNewCategory(e.target.value) }}
-                />
-              </AlertDialogDescription>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={handleNewCategory} >Add</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </DropdownMenuContent>
-      </DropdownMenu >
+      <div>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="w-full" asChild>
+            <Button className="w-full" variant="outline">
+              {selectedCategory || "Category"}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {
+              categories.map((tag, index) => (
+                <DropdownMenuCheckboxItem
+                  checked={selectedCategory === tag}
+                  onCheckedChange={() => setSelectedCategory(tag)}
+                  key={index}  >
+                  {tag}
+                </DropdownMenuCheckboxItem>
+              ))
+            }
+            <AlertDialog>
+              <AlertDialogTrigger>Add New Category</AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>New Category</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogDescription>
+                  <Input
+                    type="text"
+                    name="category"
+                    value={newCategory}
+                    onChange={(e) => { setNewCategory(e.target.value) }}
+                  />
+                </AlertDialogDescription>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleNewCategory} >Add</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </DropdownMenuContent>
+        </DropdownMenu >
+      </div>
     </>
   )
 }
