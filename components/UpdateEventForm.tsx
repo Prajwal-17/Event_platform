@@ -113,17 +113,21 @@ export default function UpdateEventForm({ eventId, eventType }: FormPropsTypes) 
     <section>
 
       <form action={handleform}>
-        <div className="grid grid-cols-2 gap-5 mx-28 my-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 px-5 sm:px-10 lg:px-28 py-10">
+          {/* Event Name */}
+          <div className="sm:col-span-1">
+            <Input
+              className="bg-gray-50 rounded-2xl w-full"
+              type="text"
+              name="title"
+              placeholder="Event Name"
+              required
+              defaultValue={title}
+            />
+          </div>
 
-          <Input
-            className="bg-gray-50 rounded-2xl"
-            type="text"
-            name="title"
-            placeholder="Event Name"
-            required
-            defaultValue={title}
-          />
-          <div>
+          {/* Category Dropdown */}
+          <div className="sm:col-span-1">
             <CategoryDropDown
               categories={categories}
               addNewCategory={addNewCategory}
@@ -131,70 +135,88 @@ export default function UpdateEventForm({ eventId, eventType }: FormPropsTypes) 
               setSelectedCategory={setSelectedCategory}
             />
           </div>
-          <Textarea
-            className="bg-gray-50"
-            name="description"
-            placeholder="Description"
-            required
-            defaultValue={description}
-          />
-          <UploadDropzone
-            endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              setImageUrl(res[0].url)
-            }}
-            onUploadError={(error: Error) => {
-              console.log(`ERROR! ${error.message}`);
-              // alert(`ERROR! ${error.message}`);
-            }}
-          />
-          <Input
-            className="col-span-2 bg-gray-50"
-            type="text"
-            name="location"
-            placeholder="Event Location or Online"
-            defaultValue={location}
-            required
-          />
-          <div className="p-3 flex bg-gray-50 ">
-            <Image
-              src="/icons/calendar.svg"
-              alt="calender"
-              width={20}
-              height={20}
-            />
-            <p className="text-gray-600	"> Start Date: </p>
-            <DatePicker
-              className="outline-none bg-gray-50"
-              selected={startDateTime}
-              onChange={(date: Date | null) => setStartDateTime(date)}
-              showTimeSelect
-              timeInputLabel="Time:"
-              dateFormat="MM/dd/yyyy h:mm aa"
-              wrapperClassName="datePicker"
+
+          {/* Description */}
+          <div className="sm:col-span-1">
+            <Textarea
+              className="bg-gray-50 w-full h-full rounded-lg"
+              name="description"
+              placeholder="Description"
+              required
+              defaultValue={description}
             />
           </div>
-          <div className="p-3 flex bg-gray-50 ">
-            <Image
-              src="/icons/calendar.svg"
-              alt="calender"
-              width={20}
-              height={20}
-            />
-            <p className="text-gray-600	"> End Date: </p>
-            <DatePicker
-              className="outline-none bg-gray-50"
-              selected={endDateTime}
-              onChange={(date: Date | null) => setEndDateTime(date)}
-              showTimeSelect
-              timeInputLabel="Time:"
-              dateFormat="MM/dd/yyyy h:mm aa"
-              wrapperClassName="datePicker"
+
+          {/* Image Upload */}
+          <div className="sm:col-span-1">
+            <UploadDropzone
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => setImageUrl(res[0].url)}
+              onUploadError={(error: Error) => console.log(`ERROR! ${error.message}`)}
+              className="w-full h-full bg-gray-50 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
             />
           </div>
-          <div>
+
+          {/* Event Location */}
+          <div className="sm:col-span-2">
             <Input
-              className="bg-gray-50 rounded-2xl"
+              className="bg-gray-50 rounded-2xl w-full"
+              type="text"
+              name="location"
+              placeholder="Event Location or Online"
+              defaultValue={location}
+              required
+            />
+          </div>
+
+          {/* Start Date */}
+          <div className="sm:col-span-1">
+            <div className="p-3 flex items-center bg-gray-50 rounded-2xl">
+              <Image
+                src="/icons/calendar.svg"
+                alt="calendar"
+                width={20}
+                height={20}
+              />
+              <p className="text-gray-600 ml-2">Start Date:</p>
+              <DatePicker
+                className="outline-none bg-gray-50 ml-2 w-full"
+                selected={startDateTime}
+                onChange={(date: Date | null) => setStartDateTime(date)}
+                showTimeSelect
+                timeInputLabel="Time:"
+                dateFormat="MM/dd/yyyy h:mm aa"
+                wrapperClassName="datePicker"
+              />
+            </div>
+          </div>
+
+          {/* End Date */}
+          <div className="sm:col-span-1">
+            <div className="p-3 flex items-center bg-gray-50 rounded-2xl">
+              <Image
+                src="/icons/calendar.svg"
+                alt="calendar"
+                width={20}
+                height={20}
+              />
+              <p className="text-gray-600 ml-2">End Date:</p>
+              <DatePicker
+                className="outline-none bg-gray-50 ml-2 w-full"
+                selected={endDateTime}
+                onChange={(date: Date | null) => setEndDateTime(date)}
+                showTimeSelect
+                timeInputLabel="Time:"
+                dateFormat="MM/dd/yyyy h:mm aa"
+                wrapperClassName="datePicker"
+              />
+            </div>
+          </div>
+
+          {/* Price */}
+          <div className="sm:col-span-1">
+            <Input
+              className="bg-gray-50 rounded-2xl w-full"
               name="price"
               type="text"
               placeholder="Price"
@@ -202,16 +224,30 @@ export default function UpdateEventForm({ eventId, eventType }: FormPropsTypes) 
               required
             />
           </div>
-          <Input
-            className="bg-gray-50"
-            defaultValue={url}
-            type="url"
-            name="url"
-            placeholder="URL"
-            required
-          />
-          <Button type="submit" className="col-span-2">{eventType} Event</Button>
+
+          {/* URL */}
+          <div className="sm:col-span-1">
+            <Input
+              className="bg-gray-50 rounded-2xl w-full"
+              defaultValue={url}
+              type="url"
+              name="url"
+              placeholder="URL"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="col-span-full">
+            <Button
+              type="submit"
+              className="w-full bg-black text-white rounded-lg py-2"
+            >
+              {eventType} Event
+            </Button>
+          </div>
         </div>
+
       </form>
     </section>
   </>)
