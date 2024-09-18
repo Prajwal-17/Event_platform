@@ -9,10 +9,13 @@ export default function LoginAndLogout() {
   const { data: session } = useSession();
 
   return (<>
-    <div className="flex items-center gap-2">
+    <div className="flex flex-col items-start md:flex-row gap-2">
 
-      <div>
-        {session ? <p>{session?.user.email}</p> : ""}
+      <div className="bg-black text-white font-semibold rounded-full py-2 px-4 border-2 border-slate-600 hidden md:flex">
+        {session ? session.user.name?.slice(0, 1).toUpperCase() : ""}
+      </div>
+      <div className="bg-black text-white font-semibold rounded-2xl border-2 border-slate-600 py-1 px-4 md:hidden ">
+        {session ? session.user.email : ""}
       </div>
 
       <div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (<>
     <hr />
-    <header className="w-full  flex text-center justify-between  px-28 py-6">
+    <header className="w-full  flex text-center justify-between px-6 md:px-12 py-6">
       <div className="flex w-full justify-between items-center ">
         <Link href="/" >
           <Image

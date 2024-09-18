@@ -57,40 +57,43 @@ export default function Page() {
     <>
       <main>
 
-        <div className="bg-[rgb(246,248,253)] px-24 py-10 w-full min-h-96">
-          <div className="grid grid-cols-2 content-between gap-8">
-            <div className="flex flex-col justify-center gap-7">
-              <div className="flex-wrap font-bold text-[40px] leading-[48px] lg:text-[48px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px]">
-                Host,Connect,
-                Celebrate:Your
-                Events,Our Platform!
+        <div className="bg-[rgb(246,248,253)] px-6 py-10 w-full min-h-96 md:px-12 lg:px-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Section */}
+            <div className="flex flex-col justify-center gap-5 md:gap-7">
+              <div className="font-bold text-[40px] leading-[48px] md:text-[40px] md:leading-[48px] lg:text-[48px] lg:leading-[60px] xl:text-[58px] xl:leading-[74px]">
+                Host, Connect, Celebrate: Your Events, Our Platform!
               </div>
 
-              <div className="text-[23px]">
-                Book and learn helpful tips from 3,168+ mentors in
-                world-class companies with our global community.
+              <div className="text-[18px] md:text-[21px] lg:text-[23px]">
+                Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.
               </div>
 
               <div>
                 <Button
                   onClick={handleExploreClick}
-                  className="bg-[rgb(98,76,245)] px-7 py-6 font-medium rounded-3xl hover:bg-[#4732d1] ">Explore Now</Button>
+                  className="bg-[rgb(98,76,245)] w-full md:w-auto px-6 py-4 md:px-7 md:py-6 font-medium rounded-3xl hover:bg-[#4732d1]"
+                >
+                  Explore Now
+                </Button>
               </div>
             </div>
-            <div className="relative w-full h-full">
+
+            {/* Right Section - Image */}
+            <div className="relative w-full h-64 md:h-auto grid-span-1">
               <Image
-                src={"/hero.png"}
+                src="/hero.png"
                 alt="Hero Image"
-                layout="fill"
-                objectFit="contain"
-                className="rounded-lg"
+                fill
+                className="object-contain"
               />
             </div>
           </div>
         </div>
 
+
       </main>
-      <main className="bg-white  px-24 py-10 w-full">
+      <main className="bg-white  px-6 md:px-12 py-10 w-full">
         <div ref={eventsRef} id="events-section" className="py-3">
           <h2 className="text-5xl font-bold my-5 ">
             Trust by <br /> Thousands of Events
@@ -115,15 +118,15 @@ export default function Page() {
           </div>
         </div> */}
 
-        <div className="grid grid-cols-3 col-span-3 gap-10 mt-12 ">
+        <div className="grid grid-cols-1 gap-10 mt-12 bsm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
           {events.length > 0 ? (
             events.map((item: EventProps) => (
               <div
-                className=" shadow-lg rounded-xl flex flex-col h-full"
+                className="shadow-lg rounded-xl flex flex-col h-full"
                 key={item.id}
               >
                 {session?.user.id === item.user.id ? (
-                  <div className="relative ">
+                  <div className="relative">
                     <div className="absolute top-2 right-2 flex flex-col space-y-2 z-10 bg-white p-2 rounded-xl shadow-md">
                       <Image
                         src="/icons/edit.svg"
@@ -132,12 +135,12 @@ export default function Page() {
                         height={20}
                         className="cursor-pointer"
                         onClick={() => {
-                          router.push(`/events/update-event/${item.id}`)
+                          router.push(`/events/update-event/${item.id}`);
                         }}
                       />
                       <Image
                         src="/icons/delete.svg"
-                        alt="update"
+                        alt="delete"
                         width={20}
                         height={20}
                         className="cursor-pointer"
@@ -152,8 +155,8 @@ export default function Page() {
                 <div className="relative h-48">
                   <Image
                     src={item.imageUrl}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
                     alt={item.title}
                     className="rounded-t-xl"
                   />
@@ -182,28 +185,31 @@ export default function Page() {
                     {item.title}
                   </div>
 
-                  <div className="flex justify-between mt-auto mb-4 ">
+                  <div className="flex justify-between mt-auto mb-4">
                     <p className="text-gray-500 font-semibold">
-                      {session?.user?.name === item.user.name
-                        ? "You"
-                        : `${item.user.name}`}
+                      {session?.user?.name === item.user.name ? "You" : `${item.user.name}`}
                     </p>
-                    <p className="text-blue-500 cursor-pointer" onClick={() => {
-                      router.push(`/order-details/${item.id}`)
-                    }}>Order Details</p>
+                    <p
+                      className="text-blue-500 cursor-pointer"
+                      onClick={() => {
+                        router.push(`/order-details/${item.id}`);
+                      }}
+                    >
+                      Order Details
+                    </p>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <div className="bg-[rgb(246,246,246)] flex flex-col justify-center items-center my-7 rounded-xl py-20 col-span-3">
+            <div className="bg-[rgb(246,246,246)] flex flex-col justify-center items-center my-7 rounded-xl py-20 col-span-1 md:col-span-2 lg:col-span-3">
               <p className="font-bold text-2xl">No Events Found</p>
               <p>Come Back Later</p>
             </div>
           )}
         </div>
+
       </main>
     </>
   );
 }
-
