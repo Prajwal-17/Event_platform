@@ -11,12 +11,16 @@ export default function LoginAndLogout() {
   return (<>
     <div className="flex flex-col items-start md:flex-row gap-2">
 
-      <div className="bg-black text-white font-semibold rounded-full py-2 px-4 border-2 border-slate-600 hidden md:flex">
-        {session ? session.user.name?.slice(0, 1).toUpperCase() : ""}
-      </div>
-      <div className="bg-black text-white font-semibold rounded-2xl border-2 border-slate-600 py-1 px-4 md:hidden ">
-        {session ? session.user.email : ""}
-      </div>
+      {session ? (
+        <div>
+          <div className="bg-black text-white font-semibold rounded-full py-2 px-4 border-2 border-slate-600 hidden md:flex">
+            {session ? session.user.name?.slice(0, 1).toUpperCase() : ""}
+          </div>
+          <div className="bg-black text-white font-semibold rounded-2xl border-2 border-slate-600 py-1 px-4 md:hidden ">
+            {session ? session.user.email : ""}
+          </div>
+        </div>
+      ) : ""}
 
       <div>
         {session ? (
