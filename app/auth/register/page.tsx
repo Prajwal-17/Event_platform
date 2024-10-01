@@ -98,7 +98,7 @@ export default function Register() {
                 </div>
                 <button type="submit" className="w-full  text-white bg-flowbite-600 hover:bg-flowbite-700 focus:ring-4 focus:outline-none focus:ring-flowbite-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-0 text-center dark:bg-flowbite-600 dark:hover:bg-flowbite-700 dark:focus:ring-flowbite-800">Sign in</button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account? <Link href="/auth/login" className="font-medium text-flowbite-600 hover:underline dark:text-flowbite-500" >Sign In</Link><a href="#" >Sign In</a>
+                  Already have an account? <Link href="/auth/login" className="font-medium text-flowbite-600 hover:underline dark:text-flowbite-500" >Sign In</Link>
                 </p>
               </form>
             </div>
